@@ -1,33 +1,28 @@
 import React, { Component } from 'react'
 
 export default class Counter extends Component {
-
-    constructor(){
-        super()
-        this.state = {number: 0}
-    }
     
-  handleOnClickPlus = () => {
-    this.props.onUpdate(1)
-    this.setState({number: this.state.number + 1})
+  handleOnClickPlus = (id) => {
+    this.props.onIncreased(1,id)
+    this.props.onCounterValueChanged(1);
   }
 
-  handleOnClickMinus = () => {
-    this.props.onUpdate(-1)
-    this.setState({number: this.state.number - 1})
+  handleOnClickMinus = (id) => {
+    this.props.onDecreased(1,id)
+    this.props.onCounterValueChanged(-1);
   }
 
 
   render() {
     return (
       <div>
-        <button onClick={this.handleOnClickPlus}>
+        <button onClick={ () => this.handleOnClickPlus(this.props.id)}>
           +
         </button>
         <span>
-          {this.state.number}
+          {this.props.counterNum}
         </span>
-        <button onClick={this.handleOnClickMinus}>
+        <button onClick={ () => this.handleOnClickMinus(this.props.id)}>
           -
         </button>
       </div>
