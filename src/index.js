@@ -3,10 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import reducer from "./reducer";
+import {createStore} from "redux";
+import { Provider } from "react-redux";
+import CounterGroup from "./CounterGroup";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+//ReactDOM.render(<App />, document.getElementById('root'));
+//serviceWorker.unregister();
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const store = createStore(reducer);
+
+ReactDOM.render(
+    <Provider store={store}> 
+      <CounterGroup size="3" />
+    </Provider>,
+    document.getElementById("root")
+  );
